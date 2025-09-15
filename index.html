@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Your Blessed Box - Order Fresh Lemonades & Desserts | Blessed Bites</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Critical CSS loaded immediately -->
     <style>
+        /* Critical above-the-fold styles */
         :root {
             --blessed-gold: #FFD700;
             --blessed-black: #000000;
@@ -14,156 +15,112 @@
         }
 
         * {
-            scroll-behavior: smooth;
+            box-sizing: border-box;
         }
 
         body {
             background-color: var(--blessed-black);
             color: white;
-            font-family: 'Georgia', serif;
+            font-family: Georgia, serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
 
+        /* Mobile-first responsive container */
         .blessed-container {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            background: var(--blessed-black);
         }
 
+        /* Desktop enhancement */
+        @media (min-width: 769px) {
+            .blessed-container {
+                background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            }
+        }
+
+        /* Optimized card styles */
         .blessed-card {
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            background: #1a1a1a;
             border: 1px solid #333;
-            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
-        }
-
-        .blessed-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
-        }
-
-        .blessed-button {
-            background: linear-gradient(45deg, var(--blessed-gold), #FFA500);
-            color: var(--blessed-black);
-            border: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .blessed-button:hover {
-            background: linear-gradient(45deg, #FFA500, var(--blessed-gold));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-        }
-
-        .blessed-input {
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid #333;
-            color: white;
-        }
-
-        .blessed-input:focus {
-            border-color: var(--blessed-gold);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-
-        .blessed-box {
-            min-height: 200px;
-            border: 3px dashed var(--blessed-gold);
-            background: rgba(26, 26, 26, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .blessed-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .blessed-item {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--blessed-gold);
             border-radius: 8px;
-            padding: 8px 12px;
-            margin: 4px;
-            display: inline-block;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .price-highlight {
-            color: var(--blessed-gold);
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        .tab-button {
-            background: rgba(26, 26, 26, 0.8);
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .tab-button.active {
-            background: var(--blessed-gold);
-            color: var(--blessed-black);
-            border-bottom-color: #FFA500;
-        }
-
-        .social-icon {
-            color: var(--blessed-gold);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            color: #FFA500;
-            transform: scale(1.2);
-        }
-
-        /* Facebook Page Plugin Styling */
-        .facebook-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .facebook-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 2px solid var(--blessed-gold);
-            border-radius: 12px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .facebook-fallback {
-            text-align: center;
-            padding: 40px 20px;
-            color: #ccc;
-        }
-
-        .facebook-fallback i {
-            font-size: 3rem;
-            color: var(--blessed-gold);
             margin-bottom: 1rem;
         }
 
+        /* Desktop-only hover effects */
+        @media (min-width: 769px) and (hover: hover) {
+            .blessed-card {
+                background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+                box-shadow: 0 4px 16px rgba(255, 215, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .blessed-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        /* Optimized buttons */
+        .blessed-button {
+            background: var(--blessed-gold);
+            color: var(--blessed-black);
+            border: none;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Mobile tap feedback */
+        @media (max-width: 768px) {
+            .blessed-button:active {
+                opacity: 0.8;
+                transform: scale(0.98);
+            }
+        }
+
+        /* Desktop hover effects */
+        @media (min-width: 769px) and (hover: hover) {
+            .blessed-button {
+                background: linear-gradient(45deg, var(--blessed-gold), #FFA500);
+                box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+                transition: all 0.3s ease;
+            }
+            
+            .blessed-button:hover {
+                background: linear-gradient(45deg, #FFA500, var(--blessed-gold));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        /* Optimized inputs */
+        .blessed-input {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #333;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .blessed-input:focus {
+            outline: none;
+            border-color: var(--blessed-gold);
+        }
+
+        /* Desktop focus effects */
+        @media (min-width: 769px) {
+            .blessed-input:focus {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        /* Loading spinner */
         .loading-spinner {
             display: inline-block;
             width: 40px;
@@ -171,13 +128,39 @@
             border: 4px solid var(--blessed-gold);
             border-radius: 50%;
             border-top-color: transparent;
-            animation: spin 1s ease-in-out infinite;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .text-4xl { font-size: 2rem; }
+            .text-3xl { font-size: 1.75rem; }
+            .text-2xl { font-size: 1.5rem; }
+            .text-xl { font-size: 1.25rem; }
+            
+            .grid-cols-2 { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Defer non-critical CSS -->
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></noscript>
 </head>
 <body class="blessed-container">
     <!-- Header -->
@@ -186,35 +169,34 @@
             <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
                  alt="Blessed Bites Logo" 
                  class="mx-auto mb-4" 
-                 style="height: 200px; width: auto;">
+                 style="height: 120px; width: auto;"
+                 loading="eager">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">
                 <span style="color: var(--blessed-gold);">Blessed</span> 
                 <span class="text-white">Bites</span>
             </h1>
             <p class="text-xl text-gray-300 mb-6">Blessing your taste buds with delicious flavors</p>
-            <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
+            <div class="flex flex-wrap justify-center items-center gap-4 text-sm">
                 <span><i class="fas fa-phone text-yellow-400"></i> (205) 523-6459</span>
                 <span><i class="fas fa-envelope text-yellow-400"></i> orders@blessedbites.online</span>
                 <span><i class="fab fa-instagram text-yellow-400"></i> @blessed_bites16</span>
-                <a href="https://www.facebook.com/profile.php?id=100063506773511" target="_blank" class="social-icon">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
             </div>
         </div>
     </header>
 
     <!-- About Section -->
-    <section class="py-16 px-4" style="background: var(--blessed-black);">
+    <section class="py-12 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-1/2">
                     <img src="https://page.gensparksite.com/v1/base64_upload/5159be641b27e59ff009c5df363885d1" 
                          alt="Dri Williams at Farmers Market" 
-                         class="rounded-lg shadow-2xl w-full">
+                         class="rounded-lg w-full"
+                         loading="lazy">
                 </div>
                 <div class="md:w-1/2">
-                    <h2 class="text-4xl font-bold mb-6">Meet Dri Williams</h2>
-                    <p class="text-lg text-gray-300 mb-6">
+                    <h2 class="text-3xl font-bold mb-4">Meet Dri Williams</h2>
+                    <p class="text-lg text-gray-300 mb-4">
                         Proudly operating out of Tuscaloosa, Blessed Bites is looking to bless your taste buds with delicious flavors. 
                         Dri Williams specializes in fruit-infused lemonades and homemade desserts that bring joy to every gathering.
                     </p>
@@ -227,27 +209,27 @@
         </div>
     </section>
 
-    <!-- Facebook Feed Section -->
-    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+    <!-- Facebook Feed Section - Lazy Loaded -->
+    <section class="py-12 px-4" style="background: var(--blessed-dark-gray);">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-8" style="color: var(--blessed-gold);">
+            <h2 class="text-3xl font-bold text-center mb-6" style="color: var(--blessed-gold);">
                 <i class="fab fa-facebook mr-3"></i>Latest Updates
             </h2>
-            <p class="text-center text-gray-300 mb-8">Stay connected with our latest creations and farmers market updates!</p>
+            <p class="text-center text-gray-300 mb-6">Stay connected with our latest creations!</p>
             
             <div class="max-w-2xl mx-auto">
-                <div class="blessed-card rounded-lg p-6">
+                <div class="blessed-card p-6">
                     <div id="facebook-loading" class="text-center py-8">
                         <div class="loading-spinner mx-auto mb-4"></div>
                         <p class="text-gray-400">Loading our latest updates...</p>
                     </div>
                     
-                    <div class="facebook-container">
+                    <div id="facebook-container" style="display: none;">
                         <div class="fb-page" 
                              data-href="https://www.facebook.com/profile.php?id=100063506773511"
                              data-tabs="timeline"
                              data-width="500"
-                             data-height="600"
+                             data-height="400"
                              data-small-header="true"
                              data-adapt-container-width="true"
                              data-hide-cover="false"
@@ -255,13 +237,13 @@
                         </div>
                     </div>
                     
-                    <div id="facebook-fallback" class="facebook-fallback" style="display: none;">
-                        <i class="fab fa-facebook"></i>
+                    <div id="facebook-fallback" style="display: none;" class="text-center py-8">
+                        <i class="fab fa-facebook text-4xl mb-4" style="color: var(--blessed-gold);"></i>
                         <h4 class="text-xl font-bold mb-2" style="color: var(--blessed-gold);">Follow Us on Facebook</h4>
-                        <p class="text-gray-400 mb-4">Stay updated with our latest lemonade flavors and dessert creations!</p>
+                        <p class="text-gray-400 mb-4">Stay updated with our latest lemonade flavors!</p>
                         <a href="https://www.facebook.com/profile.php?id=100063506773511" 
                            target="_blank" 
-                           class="blessed-button px-6 py-3 rounded inline-block">
+                           class="blessed-button">
                             Visit Our Facebook Page
                         </a>
                     </div>
@@ -271,12 +253,12 @@
                     <div class="flex flex-wrap justify-center gap-4">
                         <a href="https://www.facebook.com/profile.php?id=100063506773511" 
                            target="_blank" 
-                           class="blessed-button px-6 py-3 rounded">
+                           class="blessed-button">
                             <i class="fab fa-facebook mr-2"></i>Follow on Facebook
                         </a>
                         <a href="https://www.instagram.com/blessed_bites16/" 
                            target="_blank" 
-                           class="blessed-button px-6 py-3 rounded">
+                           class="blessed-button">
                             <i class="fab fa-instagram mr-2"></i>Follow on Instagram
                         </a>
                     </div>
@@ -286,39 +268,39 @@
     </section>
 
     <!-- Order Section -->
-    <section class="py-16 px-4" style="background: var(--blessed-black);">
+    <section class="py-12 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">
                 <span style="color: var(--blessed-gold);">Create Your</span> Blessed Box
             </h2>
 
             <!-- Order Tabs -->
-            <div class="flex flex-wrap justify-center mb-8">
-                <button class="tab-button active px-6 py-3 mx-1 mb-2 rounded-t-lg" onclick="showTab('quick-order')">
+            <div class="flex flex-wrap justify-center mb-6">
+                <button class="tab-button active px-4 py-2 mx-1 mb-2 rounded blessed-button" onclick="showTab('quick-order')">
                     <i class="fas fa-list"></i> Quick Order
                 </button>
-                <button class="tab-button px-6 py-3 mx-1 mb-2 rounded-t-lg" onclick="showTab('box-builder')">
+                <button class="tab-button px-4 py-2 mx-1 mb-2 rounded blessed-button" onclick="showTab('box-builder')">
                     <i class="fas fa-box"></i> Build Your Box
                 </button>
-                <button class="tab-button px-6 py-3 mx-1 mb-2 rounded-t-lg" onclick="showTab('dri-favorites')">
+                <button class="tab-button px-4 py-2 mx-1 mb-2 rounded blessed-button" onclick="showTab('dri-favorites')">
                     <i class="fas fa-heart"></i> Dri's Favorites
                 </button>
             </div>
 
             <!-- Quick Order Tab -->
             <div id="quick-order" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Lemonades -->
-                    <div class="blessed-card rounded-lg p-6">
-                        <h3 class="text-2xl font-bold mb-6" style="color: var(--blessed-gold);">
+                    <div class="blessed-card p-6">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--blessed-gold);">
                             <i class="fas fa-glass-water"></i> Fresh Lemonades
                         </h3>
                         
                         <div class="space-y-4">
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Pint Pouches - $4 each</h4>
-                                <p class="text-sm text-gray-400 mb-3">4 for $15</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">4 for $15</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Flavor</option>
                                     <option value="strawberry-pineapple">Strawberry Pineapple</option>
                                     <option value="strawberry">Strawberry</option>
@@ -333,15 +315,15 @@
                                     <option value="strawberry-punch">Strawberry Punch</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('pint-pouch', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('pint-pouch', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Quarts - $6 each</h4>
-                                <p class="text-sm text-gray-400 mb-3">4 for $20</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">4 for $20</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Flavor</option>
                                     <option value="strawberry-pineapple">Strawberry Pineapple</option>
                                     <option value="strawberry">Strawberry</option>
@@ -356,15 +338,15 @@
                                     <option value="strawberry-punch">Strawberry Punch</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('quart', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('quart', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Half Gallons - $12 each</h4>
-                                <p class="text-sm text-gray-400 mb-3">2 for $20</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">2 for $20</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Flavor</option>
                                     <option value="strawberry-pineapple">Strawberry Pineapple</option>
                                     <option value="strawberry">Strawberry</option>
@@ -379,15 +361,15 @@
                                     <option value="strawberry-punch">Strawberry Punch</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('half-gallon', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('half-gallon', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Gallons - $20 each</h4>
-                                <p class="text-sm text-gray-400 mb-3">4 for $75</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">4 for $75</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Flavor</option>
                                     <option value="strawberry-pineapple">Strawberry Pineapple</option>
                                     <option value="strawberry">Strawberry</option>
@@ -402,15 +384,15 @@
                                     <option value="strawberry-punch">Strawberry Punch</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('gallon', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('gallon', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Quart Mason Jars - $8 each</h4>
-                                <p class="text-sm text-gray-400 mb-3">4 for $30</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">4 for $30</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Flavor</option>
                                     <option value="strawberry-pineapple">Strawberry Pineapple</option>
                                     <option value="strawberry">Strawberry</option>
@@ -425,86 +407,86 @@
                                     <option value="strawberry-punch">Strawberry Punch</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('mason-jar', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('mason-jar', this)">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Desserts -->
-                    <div class="blessed-card rounded-lg p-6">
-                        <h3 class="text-2xl font-bold mb-6" style="color: var(--blessed-gold);">
+                    <div class="blessed-card p-6">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--blessed-gold);">
                             <i class="fas fa-birthday-cake"></i> Homemade Desserts
                         </h3>
                         
                         <div class="space-y-4">
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Bundt Cakes - $35</h4>
-                                <p class="text-sm text-gray-400 mb-3">Ask about flavors</p>
+                                <p class="text-sm text-gray-400 mb-2">Ask about flavors</p>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('bundt-cake', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('bundt-cake', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Banana Pudding Pans</h4>
-                                <p class="text-sm text-gray-400 mb-3">Small $20 | Medium $40 | Large $60</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">Small $20 | Medium $40 | Large $60</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Size</option>
                                     <option value="small">Small ($20)</option>
                                     <option value="medium">Medium ($40)</option>
                                     <option value="large">Large ($60)</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('banana-pudding', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('banana-pudding', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Better Than Sex Cake Pans</h4>
-                                <p class="text-sm text-gray-400 mb-3">Small $25 | Medium $45 | Large $65</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">Small $25 | Medium $45 | Large $65</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Size</option>
                                     <option value="small">Small ($25)</option>
                                     <option value="medium">Medium ($45)</option>
                                     <option value="large">Large ($65)</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('better-than-sex', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('better-than-sex', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Strawberry No Bake Cheesecake Pans</h4>
-                                <p class="text-sm text-gray-400 mb-3">Small $25 | Medium $50 | Large $65</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">Small $25 | Medium $50 | Large $65</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Size</option>
                                     <option value="small">Small ($25)</option>
                                     <option value="medium">Medium ($50)</option>
                                     <option value="large">Large ($65)</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('cheesecake', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('cheesecake', this)">Add to Cart</button>
                                 </div>
                             </div>
 
-                            <div class="blessed-card p-4 rounded">
+                            <div class="blessed-card p-4">
                                 <h4 class="font-bold text-lg mb-2">Strawberry Shortcake Pans</h4>
-                                <p class="text-sm text-gray-400 mb-3">Small $22 | Medium $42 | Large $60</p>
-                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                <p class="text-sm text-gray-400 mb-2">Small $22 | Medium $42 | Large $60</p>
+                                <select class="blessed-input mb-2">
                                     <option value="">Select Size</option>
                                     <option value="small">Small ($22)</option>
                                     <option value="medium">Medium ($42)</option>
                                     <option value="large">Large ($60)</option>
                                 </select>
                                 <div class="flex items-center gap-2">
-                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
-                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('shortcake', this)">Add to Cart</button>
+                                    <input type="number" min="0" class="blessed-input" style="width: 80px;" placeholder="Qty">
+                                    <button class="blessed-button" onclick="addToCart('shortcake', this)">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -513,32 +495,32 @@
             </div>
 
             <!-- Box Builder Tab -->
-            <div id="box-builder" class="tab-content hidden">
-                <div class="text-center mb-8">
+            <div id="box-builder" class="tab-content" style="display: none;">
+                <div class="text-center mb-6">
                     <h3 class="text-2xl font-bold mb-4">Build Your Custom Blessed Box</h3>
                     <p class="text-gray-300">Click items below to add them to your custom box!</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         <h4 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">Available Items</h4>
                         <div class="space-y-2">
-                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Strawberry Pineapple Lemonade - Quart', 6)">
+                            <button class="blessed-button w-full p-3 text-left" onclick="addToBox('Strawberry Pineapple Lemonade - Quart', 6)">
                                 Strawberry Pineapple Lemonade - Quart ($6)
                             </button>
-                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Peach Lemonade - Mason Jar', 8)">
+                            <button class="blessed-button w-full p-3 text-left" onclick="addToBox('Peach Lemonade - Mason Jar', 8)">
                                 Peach Lemonade - Mason Jar ($8)
                             </button>
-                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Banana Pudding - Small Pan', 20)">
+                            <button class="blessed-button w-full p-3 text-left" onclick="addToBox('Banana Pudding - Small Pan', 20)">
                                 Banana Pudding - Small Pan ($20)
                             </button>
-                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Better Than Sex Cake - Small', 25)">
+                            <button class="blessed-button w-full p-3 text-left" onclick="addToBox('Better Than Sex Cake - Small', 25)">
                                 Better Than Sex Cake - Small ($25)
                             </button>
-                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Strawberry Cheesecake - Small', 25)">
+                            <button class="blessed-button w-full p-3 text-left" onclick="addToBox('Strawberry Cheesecake - Small', 25)">
                                 Strawberry Cheesecake - Small ($25)
                             </button>
-                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Bundt Cake', 35)">
+                            <button class="blessed-button w-full p-3 text-left" onclick="addToBox('Bundt Cake', 35)">
                                 Bundt Cake ($35)
                             </button>
                         </div>
@@ -546,17 +528,17 @@
 
                     <div>
                         <h4 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">Your Blessed Box</h4>
-                        <div id="blessed-box" class="blessed-box rounded-lg p-6 flex flex-col items-center justify-center text-center">
-                            <i class="fas fa-box-open text-6xl text-yellow-400 mb-4"></i>
+                        <div id="blessed-box" class="blessed-card p-6 min-h-48 flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-box-open text-6xl mb-4" style="color: var(--blessed-gold);"></i>
                             <p class="text-lg">Your blessed items will appear here!</p>
                             <p class="text-sm text-gray-400 mt-2">Click items on the left to add them</p>
                         </div>
-                        <div class="mt-4 p-4 blessed-card rounded">
+                        <div class="mt-4 p-4 blessed-card">
                             <div class="flex justify-between items-center">
                                 <span class="text-lg font-bold">Box Total:</span>
-                                <span id="box-total" class="price-highlight">$0.00</span>
+                                <span id="box-total" class="text-xl font-bold" style="color: var(--blessed-gold);">$0.00</span>
                             </div>
-                            <button id="add-box-to-cart" class="blessed-button w-full mt-4 p-3 rounded" onclick="addBoxToCart()" style="display: none;">
+                            <button id="add-box-to-cart" class="blessed-button w-full mt-4 p-3" onclick="addBoxToCart()" style="display: none;">
                                 Add Box to Order
                             </button>
                         </div>
@@ -565,14 +547,14 @@
             </div>
 
             <!-- Dri's Favorites Tab -->
-            <div id="dri-favorites" class="tab-content hidden">
-                <div class="text-center mb-8">
+            <div id="dri-favorites" class="tab-content" style="display: none;">
+                <div class="text-center mb-6">
                     <h3 class="text-2xl font-bold mb-4">Dri's Signature Bundles</h3>
                     <p class="text-gray-300">Hand-picked combinations that customers love most!</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="blessed-card rounded-lg p-6 text-center">
+                    <div class="blessed-card p-6 text-center">
                         <div class="mb-4">
                             <i class="fas fa-users text-4xl" style="color: var(--blessed-gold);"></i>
                         </div>
@@ -585,14 +567,14 @@
                         </div>
                         <div class="mb-4">
                             <span class="text-gray-400 line-through">Regular Price: $96</span><br>
-                            <span class="price-highlight text-2xl">Bundle: $85</span>
+                            <span class="text-2xl font-bold" style="color: var(--blessed-gold);">Bundle: $85</span>
                         </div>
-                        <button class="blessed-button px-6 py-3 rounded w-full" onclick="addBundleToCart('family-feast', 85)">
+                        <button class="blessed-button px-6 py-3 w-full" onclick="addBundleToCart('family-feast', 85)">
                             Add to Order
                         </button>
                     </div>
 
-                    <div class="blessed-card rounded-lg p-6 text-center">
+                    <div class="blessed-card p-6 text-center">
                         <div class="mb-4">
                             <i class="fas fa-glass-water text-4xl" style="color: var(--blessed-gold);"></i>
                         </div>
@@ -604,14 +586,14 @@
                         </div>
                         <div class="mb-4">
                             <span class="text-gray-400 line-through">Regular Price: $48</span><br>
-                            <span class="price-highlight text-2xl">Bundle: $42</span>
+                            <span class="text-2xl font-bold" style="color: var(--blessed-gold);">Bundle: $42</span>
                         </div>
-                        <button class="blessed-button px-6 py-3 rounded w-full" onclick="addBundleToCart('lemonade-lover', 42)">
+                        <button class="blessed-button px-6 py-3 w-full" onclick="addBundleToCart('lemonade-lover', 42)">
                             Add to Order
                         </button>
                     </div>
 
-                    <div class="blessed-card rounded-lg p-6 text-center">
+                    <div class="blessed-card p-6 text-center">
                         <div class="mb-4">
                             <i class="fas fa-heart text-4xl" style="color: var(--blessed-gold);"></i>
                         </div>
@@ -623,9 +605,9 @@
                         </div>
                         <div class="mb-4">
                             <span class="text-gray-400 line-through">Regular Price: $82</span><br>
-                            <span class="price-highlight text-2xl">Bundle: $75</span>
+                            <span class="text-2xl font-bold" style="color: var(--blessed-gold);">Bundle: $75</span>
                         </div>
-                        <button class="blessed-button px-6 py-3 rounded w-full" onclick="addBundleToCart('dessert-paradise', 75)">
+                        <button class="blessed-button px-6 py-3 w-full" onclick="addBundleToCart('dessert-paradise', 75)">
                             Add to Order
                         </button>
                     </div>
@@ -637,17 +619,17 @@
     <!-- Order Summary -->
     <section class="py-12 px-4" style="background: var(--blessed-dark-gray);">
         <div class="container mx-auto max-w-2xl">
-            <div class="blessed-card rounded-lg p-8">
+            <div class="blessed-card p-6">
                 <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--blessed-gold);">Complete Your Order</h3>
                 
                 <div class="mb-6">
                     <h4 class="text-lg font-bold mb-4">Order Summary</h4>
-                    <div id="cart-items" class="min-h-16 p-4 blessed-input rounded">
+                    <div id="cart-items" class="min-h-16 p-4 blessed-input">
                         <p class="text-gray-400">Your items will appear here as you add them to your order.</p>
                     </div>
-                    <div class="flex justify-between items-center mt-4 p-4 blessed-card rounded">
+                    <div class="flex justify-between items-center mt-4 p-4 blessed-card">
                         <span class="text-lg font-bold">Total:</span>
-                        <span id="cart-total" class="price-highlight text-2xl">$0.00</span>
+                        <span id="cart-total" class="text-2xl font-bold" style="color: var(--blessed-gold);">$0.00</span>
                     </div>
                 </div>
 
@@ -658,23 +640,23 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label class="block text-sm font-bold mb-2">Full Name *</label>
-                            <input type="text" name="full-name" class="blessed-input w-full p-3 rounded" required>
+                            <input type="text" name="full-name" class="blessed-input" required>
                         </div>
                         <div>
                             <label class="block text-sm font-bold mb-2">Phone Number *</label>
-                            <input type="tel" name="phone" class="blessed-input w-full p-3 rounded" required>
+                            <input type="tel" name="phone" class="blessed-input" required>
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-bold mb-2">Email Address *</label>
-                        <input type="email" name="email" class="blessed-input w-full p-3 rounded" required>
+                        <input type="email" name="email" class="blessed-input" required>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label class="block text-sm font-bold mb-2">Pickup/Delivery *</label>
-                            <select name="pickup-delivery" class="blessed-input w-full p-3 rounded" required>
+                            <select name="pickup-delivery" class="blessed-input" required>
                                 <option value="">Select Option</option>
                                 <option value="pickup-farmers-market">Pickup at Farmers Market</option>
                                 <option value="pickup-location">Pickup at Location</option>
@@ -683,7 +665,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-bold mb-2">Payment Method *</label>
-                            <select name="payment-method" class="blessed-input w-full p-3 rounded" required>
+                            <select name="payment-method" class="blessed-input" required>
                                 <option value="">Select Payment</option>
                                 <option value="venmo">Venmo ((205) 523-6459)</option>
                                 <option value="square">Square Payment Link</option>
@@ -696,7 +678,7 @@
                     </div>
 
                     <div class="mb-6">
-                        <div class="blessed-card p-4 rounded mb-4">
+                        <div class="blessed-card p-4 mb-4">
                             <h4 class="font-bold mb-2">Order Details</h4>
                             <div id="order-summary-display" class="text-sm text-gray-300">
                                 Items will appear here when you add them to your order.
@@ -704,7 +686,7 @@
                             <div class="mt-2 pt-2 border-t border-gray-600">
                                 <div class="flex justify-between">
                                     <span class="font-bold">Total:</span>
-                                    <span id="final-total" class="price-highlight">$0.00</span>
+                                    <span id="final-total" class="font-bold" style="color: var(--blessed-gold);">$0.00</span>
                                 </div>
                             </div>
                         </div>
@@ -712,11 +694,11 @@
 
                     <div class="mb-6">
                         <label class="block text-sm font-bold mb-2">Special Instructions</label>
-                        <textarea name="special-instructions" class="blessed-input w-full p-3 rounded h-24" 
+                        <textarea name="special-instructions" class="blessed-input h-24" 
                                   placeholder="Any special requests, flavor preferences, or delivery instructions..."></textarea>
                     </div>
 
-                    <button type="submit" class="blessed-button w-full py-4 text-lg font-bold rounded">
+                    <button type="submit" class="blessed-button w-full py-4 text-lg font-bold">
                         <i class="fas fa-heart"></i> Place Your Blessed Order
                     </button>
                     
@@ -729,12 +711,12 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-16 px-4" style="background: var(--blessed-black);">
+    <section class="py-12 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--blessed-gold);">What Our Customers Say</h2>
+            <h2 class="text-3xl font-bold text-center mb-8" style="color: var(--blessed-gold);">What Our Customers Say</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="blessed-card rounded-lg p-6 text-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="blessed-card p-6 text-center">
                     <div class="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                     <p class="text-gray-300 mb-4 italic">
                         "SO YUMMY! I got one of the lemonades at the Tuscaloosa Farmers Market today after trying it for the first time. 
@@ -746,7 +728,7 @@
                     </div>
                 </div>
 
-                <div class="blessed-card rounded-lg p-6 text-center">
+                <div class="blessed-card p-6 text-center">
                     <div class="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                     <p class="text-gray-300 mb-4 italic">
                         "Dri always does a great video of what's fresh at the market each week. The quality and flavor of everything is amazing. 
@@ -758,7 +740,7 @@
                     </div>
                 </div>
 
-                <div class="blessed-card rounded-lg p-6 text-center">
+                <div class="blessed-card p-6 text-center">
                     <div class="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                     <p class="text-gray-300 mb-4 italic">
                         "The desserts are incredible and the lemonades are so refreshing! Perfect for our family gatherings. 
@@ -774,38 +756,38 @@
     </section>
 
     <!-- Location -->
-    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+    <section class="py-12 px-4" style="background: var(--blessed-dark-gray);">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8" style="color: var(--blessed-gold);">Visit Us at the Market</h2>
+            <h2 class="text-3xl font-bold mb-6" style="color: var(--blessed-gold);">Visit Us at the Market</h2>
             
-            <div class="blessed-card rounded-lg p-8 max-w-2xl mx-auto">
+            <div class="blessed-card p-6 max-w-2xl mx-auto">
                 <h3 class="text-xl font-bold mb-4">Tuscaloosa Farmers Market</h3>
                 <p class="text-lg mb-2">1900 Jack Warner Parkway</p>
-                <p class="text-lg mb-6">Tuscaloosa, AL 35404</p>
+                <p class="text-lg mb-4">Tuscaloosa, AL 35404</p>
                 
-                <div class="text-yellow-400 text-lg font-bold mb-4">
+                <div class="text-lg font-bold mb-4" style="color: var(--blessed-gold);">
                     <i class="fas fa-clock"></i> Saturdays: 7:00 AM - 12:00 PM
                 </div>
                 
-                <p class="text-gray-300 mb-6">
+                <p class="text-gray-300 mb-4">
                     Find us at our booth with fresh lemonades and desserts!
                 </p>
 
-                <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
-                    <span><i class="fas fa-phone text-yellow-400"></i> Call: (205) 523-6459</span>
-                    <span><i class="fas fa-envelope text-yellow-400"></i> orders@blessedbites.online</span>
+                <div class="flex flex-wrap justify-center items-center gap-4 text-sm">
+                    <span><i class="fas fa-phone" style="color: var(--blessed-gold);"></i> Call: (205) 523-6459</span>
+                    <span><i class="fas fa-envelope" style="color: var(--blessed-gold);"></i> orders@blessedbites.online</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Disclosure Section -->
-    <section class="py-16 px-4" style="background: var(--blessed-black);">
+    <section class="py-12 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto max-w-4xl">
-            <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--blessed-gold);">Disclosure</h2>
+            <h2 class="text-3xl font-bold text-center mb-8" style="color: var(--blessed-gold);">Disclosure</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="blessed-card rounded-lg p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="blessed-card p-6">
                     <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
                         <i class="fas fa-shield-alt"></i> Food Safety & Allergens
                     </h3>
@@ -818,7 +800,7 @@
                     </ul>
                 </div>
 
-                <div class="blessed-card rounded-lg p-6">
+                <div class="blessed-card p-6">
                     <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
                         <i class="fas fa-calendar-check"></i> Order & Payment Policies
                     </h3>
@@ -831,7 +813,7 @@
                     </ul>
                 </div>
 
-                <div class="blessed-card rounded-lg p-6">
+                <div class="blessed-card p-6">
                     <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
                         <i class="fas fa-info-circle"></i> Business Information
                     </h3>
@@ -844,7 +826,7 @@
                     </ul>
                 </div>
 
-                <div class="blessed-card rounded-lg p-6">
+                <div class="blessed-card p-6">
                     <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
                         <i class="fas fa-heart"></i> Liability & Quality
                     </h3>
@@ -866,10 +848,10 @@
             <div class="mb-6">
                 <h3 class="text-lg font-bold mb-4">Follow Us</h3>
                 <div class="flex justify-center space-x-6">
-                    <a href="https://www.facebook.com/profile.php?id=100063506773511" target="_blank" class="social-icon">
+                    <a href="https://www.facebook.com/profile.php?id=100063506773511" target="_blank" class="text-yellow-400 text-2xl">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.instagram.com/blessed_bites16/" target="_blank" class="social-icon">
+                    <a href="https://www.instagram.com/blessed_bites16/" target="_blank" class="text-yellow-400 text-2xl">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -887,7 +869,8 @@
                 <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
                      alt="Blessed Bites Logo" 
                      class="mx-auto mb-4" 
-                     style="height: 60px; width: auto;">
+                     style="height: 60px; width: auto;"
+                     loading="lazy">
                 <h3 class="text-xl font-bold mb-2">Blessed Bites</h3>
                 <p class="text-gray-400">Tuscaloosa, AL</p>
                 <p class="text-gray-400 mt-4">© 2012 Blessed Bites. Made with ❤️ in Tuscaloosa</p>
@@ -895,57 +878,120 @@
         </div>
     </footer>
 
-    <!-- Facebook SDK -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
-
+    <!-- Deferred Scripts for Performance -->
     <script>
+        // Performance-optimized JavaScript with device detection
+        
+        // Device detection
+        const isMobile = () => window.innerWidth <= 768;
+        const isTouch = 'ontouchstart' in window;
+        
         // Cart functionality
         let cart = [];
         let cartTotal = 0;
-
-        // Facebook loading handler
-        window.fbAsyncInit = function() {
-            FB.init({
-                xfbml: true,
-                version: 'v18.0'
-            });
+        
+        // Box Builder functionality
+        let boxItems = [];
+        let boxTotal = 0;
+        
+        // Optimized Facebook loading
+        let facebookLoaded = false;
+        
+        // Initialize based on device type
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+            updateBoxDisplay();
+            initializeDeviceOptimizations();
             
-            // Hide loading spinner when Facebook loads
-            setTimeout(() => {
-                document.getElementById('facebook-loading').style.display = 'none';
-            }, 2000);
-        };
-
-        // Fallback for Facebook feed
-        setTimeout(() => {
-            const fbElement = document.querySelector('.fb-page');
-            if (fbElement && !fbElement.children.length) {
-                document.getElementById('facebook-loading').style.display = 'none';
-                document.getElementById('facebook-fallback').style.display = 'block';
+            // Lazy load Facebook feed based on device
+            if (isMobile()) {
+                // Mobile: Load after 3 seconds to prioritize core content
+                setTimeout(loadFacebookFeed, 3000);
+            } else {
+                // Desktop: Load after 1 second
+                setTimeout(loadFacebookFeed, 1000);
             }
-        }, 10000); // 10 second timeout
-
-        // Tab functionality
+        });
+        
+        function initializeDeviceOptimizations() {
+            if (isMobile()) {
+                // Mobile optimizations
+                document.body.classList.add('mobile-optimized');
+                
+                // Add touch feedback to buttons
+                document.querySelectorAll('.blessed-button').forEach(btn => {
+                    btn.addEventListener('touchstart', () => {
+                        btn.style.opacity = '0.8';
+                    });
+                    btn.addEventListener('touchend', () => {
+                        btn.style.opacity = '1';
+                    });
+                });
+            } else {
+                // Desktop optimizations
+                document.body.classList.add('desktop-optimized');
+            }
+        }
+        
+        function loadFacebookFeed() {
+            if (facebookLoaded) return;
+            facebookLoaded = true;
+            
+            // Load Facebook SDK
+            window.fbAsyncInit = function() {
+                FB.init({
+                    xfbml: true,
+                    version: 'v18.0'
+                });
+                
+                // Show Facebook container after SDK loads
+                setTimeout(() => {
+                    document.getElementById('facebook-loading').style.display = 'none';
+                    document.getElementById('facebook-container').style.display = 'block';
+                }, 2000);
+            };
+            
+            // Create and load Facebook SDK script
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            
+            // Fallback if Facebook doesn't load
+            setTimeout(() => {
+                const fbContainer = document.getElementById('facebook-container');
+                if (fbContainer && fbContainer.style.display === 'none') {
+                    document.getElementById('facebook-loading').style.display = 'none';
+                    document.getElementById('facebook-fallback').style.display = 'block';
+                }
+            }, 10000);
+        }
+        
+        // Optimized tab functionality
         function showTab(tabName) {
-            // Hide all tab contents
+            // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.add('hidden');
+                tab.style.display = 'none';
             });
             
             // Remove active class from all buttons
             document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
+                btn.style.background = 'var(--blessed-gold)';
+                btn.style.opacity = '0.7';
             });
             
             // Show selected tab
-            document.getElementById(tabName).classList.remove('hidden');
+            document.getElementById(tabName).style.display = 'block';
             
-            // Add active class to clicked button
-            event.target.classList.add('active');
+            // Highlight active button
+            event.target.style.background = 'var(--blessed-gold)';
+            event.target.style.opacity = '1';
         }
-
-        // Quick Order functionality
+        
+        // Optimized addToCart function
         function addToCart(itemType, button) {
             const container = button.closest('.blessed-card');
             const flavorSelect = container.querySelector('select:first-of-type');
@@ -954,15 +1000,15 @@
             
             const quantity = parseInt(quantityInput.value);
             if (!quantity || quantity < 1) {
-                alert('Please enter a quantity');
+                showMessage('Please enter a quantity', 'warning');
                 return;
             }
-
+            
             let itemName = '';
             let price = 0;
             let flavor = '';
             let size = '';
-
+            
             // Get item details based on type
             switch(itemType) {
                 case 'pint-pouch':
@@ -997,7 +1043,7 @@
                 default:
                     const sizeValue = sizeSelect.value;
                     if (!sizeValue) {
-                        alert('Please select a size');
+                        showMessage('Please select a size', 'warning');
                         return;
                     }
                     
@@ -1021,23 +1067,22 @@
                             break;
                     }
             }
-
-            if (flavor && !flavorSelect.value) {
-                alert('Please select a flavor');
+            
+            if (flavorSelect && !flavorSelect.value) {
+                showMessage('Please select a flavor', 'warning');
                 return;
             }
-
+            
             // Add to cart
             for (let i = 0; i < quantity; i++) {
-                const item = {
+                cart.push({
                     name: itemName,
                     flavor: flavor || '',
                     size: size || '',
                     price: price
-                };
-                cart.push(item);
+                });
             }
-
+            
             updateCartDisplay();
             
             // Reset form
@@ -1045,28 +1090,35 @@
             if (flavorSelect) flavorSelect.selectedIndex = 0;
             if (sizeSelect && itemType !== 'quart') sizeSelect.selectedIndex = 0;
             
-            // Show success message
-            showSuccessMessage(`Added ${quantity}x ${itemName} to your order!`);
+            // Show success message with device-appropriate feedback
+            showMessage(`Added ${quantity}x ${itemName} to your order!`, 'success');
+            
+            // Mobile haptic feedback
+            if (isMobile() && navigator.vibrate) {
+                navigator.vibrate(50);
+            }
         }
-
-        // Box Builder functionality
-        let boxItems = [];
-        let boxTotal = 0;
-
+        
         function addToBox(itemName, price) {
             boxItems.push({name: itemName, price: price});
             boxTotal += price;
             updateBoxDisplay();
+            
+            showMessage(`Added ${itemName} to your box!`, 'success');
+            
+            if (isMobile() && navigator.vibrate) {
+                navigator.vibrate(30);
+            }
         }
-
+        
         function updateBoxDisplay() {
             const boxElement = document.getElementById('blessed-box');
             const totalElement = document.getElementById('box-total');
             const addButton = document.getElementById('add-box-to-cart');
-
+            
             if (boxItems.length === 0) {
                 boxElement.innerHTML = `
-                    <i class="fas fa-box-open text-6xl text-yellow-400 mb-4"></i>
+                    <i class="fas fa-box-open text-6xl mb-4" style="color: var(--blessed-gold);"></i>
                     <p class="text-lg">Your blessed items will appear here!</p>
                     <p class="text-sm text-gray-400 mt-2">Click items on the left to add them</p>
                 `;
@@ -1076,34 +1128,33 @@
                     <div class="w-full">
                         <div class="flex flex-wrap gap-2 mb-4">
                             ${boxItems.map((item, index) => `
-                                <span class="blessed-item text-sm">
+                                <span class="bg-yellow-500 text-black px-3 py-1 rounded text-sm">
                                     ${item.name}
-                                    <button onclick="removeFromBox(${index})" class="ml-2 text-red-400 hover:text-red-300">×</button>
+                                    <button onclick="removeFromBox(${index})" class="ml-2 text-red-600">×</button>
                                 </span>
                             `).join('')}
                         </div>
-                        <p class="text-center text-yellow-400 font-bold">Your box is getting blessed! ✨</p>
+                        <p class="text-center font-bold" style="color: var(--blessed-gold);">Your box is getting blessed! ✨</p>
                     </div>
                 `;
                 addButton.style.display = 'block';
             }
-
+            
             totalElement.textContent = `$${boxTotal.toFixed(2)}`;
         }
-
+        
         function removeFromBox(index) {
             boxTotal -= boxItems[index].price;
             boxItems.splice(index, 1);
             updateBoxDisplay();
         }
-
+        
         function addBoxToCart() {
             if (boxItems.length === 0) return;
             
             boxItems.forEach(item => cart.push(item));
-            cartTotal += boxTotal;
             
-            showSuccessMessage(`Added your Blessed Box (${boxItems.length} items) to your order!`);
+            showMessage(`Added your Blessed Box (${boxItems.length} items) to your order!`, 'success');
             
             // Reset box
             boxItems = [];
@@ -1111,32 +1162,27 @@
             updateBoxDisplay();
             updateCartDisplay();
         }
-
-        // Bundle functionality
+        
         function addBundleToCart(bundleName, price) {
-            let bundleItem = {
-                name: '',
-                price: price
-            };
-
+            let bundleItem = { name: '', price: price };
+            
             switch(bundleName) {
                 case 'family-feast':
-                    bundleItem.name = 'Family Feast Bundle (Gallon + 2 Mason Jars + Large Banana Pudding)';
+                    bundleItem.name = 'Family Feast Bundle';
                     break;
                 case 'lemonade-lover':
-                    bundleItem.name = 'Lemonade Lover Bundle (8 Pint Pouches + 2 Mason Jars)';
+                    bundleItem.name = 'Lemonade Lover Bundle';
                     break;
                 case 'dessert-paradise':
-                    bundleItem.name = 'Dessert Paradise Bundle (3 Small Dessert Pans + 2 Quarts)';
+                    bundleItem.name = 'Dessert Paradise Bundle';
                     break;
             }
-
+            
             cart.push(bundleItem);
             updateCartDisplay();
-            showSuccessMessage(`Added ${bundleItem.name} to your order!`);
+            showMessage(`Added ${bundleItem.name} to your order!`, 'success');
         }
-
-        // Update cart display
+        
         function updateCartDisplay() {
             cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
             
@@ -1144,7 +1190,7 @@
             const cartTotalElement = document.getElementById('cart-total');
             const orderSummaryElement = document.getElementById('order-summary-display');
             const finalTotalElement = document.getElementById('final-total');
-
+            
             if (cart.length === 0) {
                 cartItemsElement.innerHTML = '<p class="text-gray-400">Your items will appear here as you add them to your order.</p>';
                 orderSummaryElement.innerHTML = 'Items will appear here when you add them to your order.';
@@ -1155,14 +1201,12 @@
                             ${item.name} ${item.flavor ? `(${item.flavor})` : ''} ${item.size ? `- ${item.size}` : ''}
                         </span>
                         <div class="flex items-center gap-2">
-                            <span class="text-yellow-400">$${item.price.toFixed(2)}</span>
-                            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-xs">
-                                <i class="fas fa-times"></i>
-                            </button>
+                            <span style="color: var(--blessed-gold);">$${item.price.toFixed(2)}</span>
+                            <button onclick="removeFromCart(${index})" class="text-red-400 text-xs">×</button>
                         </div>
                     </div>
                 `).join('');
-
+                
                 orderSummaryElement.innerHTML = cart.map(item => `
                     <div class="flex justify-between py-1">
                         <span>${item.name} ${item.flavor ? `(${item.flavor})` : ''} ${item.size ? `- ${item.size}` : ''}</span>
@@ -1170,37 +1214,58 @@
                     </div>
                 `).join('');
             }
-
+            
             cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
             finalTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
-
+            
             // Update hidden form fields
             document.getElementById('order-items-hidden').value = JSON.stringify(cart);
             document.getElementById('order-total-hidden').value = cartTotal.toFixed(2);
         }
-
+        
         function removeFromCart(index) {
             cart.splice(index, 1);
             updateCartDisplay();
+            showMessage('Item removed from cart', 'info');
         }
-
-        // Success message
-        function showSuccessMessage(message) {
-            const successDiv = document.createElement('div');
-            successDiv.className = 'fixed top-4 right-4 bg-yellow-500 text-black px-6 py-3 rounded-lg z-50 font-bold';
-            successDiv.textContent = message;
-            document.body.appendChild(successDiv);
-
+        
+        // Optimized message system
+        function showMessage(message, type = 'success') {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `fixed top-4 right-4 px-4 py-3 rounded z-50 font-bold text-sm`;
+            
+            switch(type) {
+                case 'success':
+                    messageDiv.style.background = 'var(--blessed-gold)';
+                    messageDiv.style.color = 'var(--blessed-black)';
+                    break;
+                case 'warning':
+                    messageDiv.style.background = '#ff6b6b';
+                    messageDiv.style.color = 'white';
+                    break;
+                case 'info':
+                    messageDiv.style.background = '#4ecdc4';
+                    messageDiv.style.color = 'white';
+                    break;
+            }
+            
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
             setTimeout(() => {
-                successDiv.remove();
+                messageDiv.remove();
             }, 3000);
         }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartDisplay();
-            updateBoxDisplay();
-        });
     </script>
+    
+    <!-- Load FontAwesome Icons Asynchronously -->
+    <script>
+        // Lazy load FontAwesome for better performance
+        const fontAwesome = document.createElement('link');
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.href = 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css';
+        document.head.appendChild(fontAwesome);
+    </script>
+    
 </body>
 </html>
