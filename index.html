@@ -132,41 +132,105 @@
             transform: scale(1.2);
         }
 
+        /* Facebook Feed Styling */
         .facebook-feed-container {
-            background: var(--blessed-dark-gray);
+            position: relative;
+            overflow: hidden;
         }
 
-        .facebook-post {
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-            border: 1px solid #333;
+        .facebook-feed-wrapper {
+            background: rgba(26, 26, 26, 0.9);
             border-radius: 12px;
             padding: 20px;
+            border: 2px solid #333;
+            position: relative;
+        }
+
+        .facebook-feed-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.05), rgba(255, 165, 0, 0.05));
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .facebook-feed-wrapper > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Custom Facebook Plugin Styling */
+        .fb-page {
+            border-radius: 8px !important;
+            overflow: hidden !important;
+        }
+
+        /* Style the iframe when it loads */
+        .fb-page iframe {
+            border-radius: 8px !important;
+            border: 2px solid #333 !important;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1) !important;
+        }
+
+        .facebook-header {
+            text-align: center;
             margin-bottom: 20px;
-            transition: transform 0.3s ease;
         }
 
-        .facebook-post:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+        .facebook-header h3 {
+            color: var(--blessed-gold);
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
         }
 
-        .loading-spinner {
-            border: 3px solid #333;
-            border-top: 3px solid var(--blessed-gold);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+        .facebook-header p {
+            color: #ccc;
+            font-size: 1rem;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .facebook-fallback {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 8px;
+            border: 2px solid #333;
+        }
+
+        .facebook-fallback i {
+            font-size: 3rem;
+            color: var(--blessed-gold);
+            margin-bottom: 20px;
+        }
+
+        .facebook-fallback h4 {
+            color: var(--blessed-gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .facebook-fallback p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .fb-page {
+                width: 100% !important;
+            }
         }
     </style>
 </head>
 <body class="blessed-container">
+    <!-- Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
+
     <!-- Header -->
     <header class="py-6 px-4" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);">
         <div class="container mx-auto text-center">
@@ -214,123 +278,66 @@
         </div>
     </section>
 
-    <!-- Latest Updates Section -->
-    <section class="py-16 px-4 facebook-feed-container">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12">
-                <span style="color: var(--blessed-gold);">Latest</span> 
-                <span class="text-white">Updates</span>
-            </h2>
+    <!-- Latest Updates (Facebook Feed) Section -->
+    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+        <div class="container mx-auto max-w-4xl">
+            <div class="facebook-header">
+                <h3><i class="fab fa-facebook"></i> Latest Updates</h3>
+                <p>Stay up to date with our freshest creations and market updates!</p>
+            </div>
             
-            <div id="facebook-feed" class="max-w-4xl mx-auto">
-                <!-- Loading state -->
-                <div id="feed-loading" class="text-center">
-                    <div class="loading-spinner"></div>
-                    <p class="text-gray-300">Loading latest updates from Blessed Bites...</p>
-                </div>
-                
-                <!-- Feed content will be loaded here -->
-                <div id="feed-content" style="display: none;">
-                    <!-- Sample posts for demonstration -->
-                    <div class="facebook-post">
-                        <div class="flex items-center mb-4">
-                            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
-                                 alt="Blessed Bites" 
-                                 class="w-12 h-12 rounded-full mr-3">
-                            <div>
-                                <h4 class="font-bold text-yellow-400">Blessed Bites</h4>
-                                <p class="text-sm text-gray-400">2 hours ago</p>
-                            </div>
+            <div class="facebook-feed-container blessed-card rounded-lg">
+                <div class="facebook-feed-wrapper">
+                    <!-- Facebook Page Plugin -->
+                    <div class="text-center">
+                        <div class="fb-page" 
+                             data-href="https://www.facebook.com/profile.php?id=100063506773511"
+                             data-tabs="timeline"
+                             data-width="500"
+                             data-height="600"
+                             data-small-header="true"
+                             data-adapt-container-width="true"
+                             data-hide-cover="false"
+                             data-show-facepile="false">
+                            <blockquote cite="https://www.facebook.com/profile.php?id=100063506773511" class="fb-xfbml-parse-ignore">
+                                <!-- Fallback content while Facebook loads -->
+                                <div class="facebook-fallback">
+                                    <i class="fab fa-facebook"></i>
+                                    <h4>Loading Blessed Bites Updates...</h4>
+                                    <p>Our latest posts are loading. If you don't see them in a few seconds, visit our Facebook page directly!</p>
+                                    <a href="https://www.facebook.com/profile.php?id=100063506773511" 
+                                       target="_blank" 
+                                       class="blessed-button px-6 py-3 rounded inline-block">
+                                        Visit Our Facebook Page
+                                    </a>
+                                </div>
+                            </blockquote>
                         </div>
-                        <p class="text-gray-300 mb-4">
-                            🍋✨ Fresh batch of Strawberry Pineapple lemonades ready for this weekend! 
-                            The perfect blend of sweet and tangy that our customers absolutely love. 
-                            Who's ready for the Farmers Market tomorrow? 
-                        </p>
-                        <div class="flex items-center justify-between text-sm text-gray-400">
-                            <div class="flex items-center space-x-4">
-                                <span><i class="fas fa-heart text-red-400"></i> 24 likes</span>
-                                <span><i class="fas fa-comment text-blue-400"></i> 8 comments</span>
-                            </div>
+                    </div>
+                    
+                    <!-- Additional Facebook CTA -->
+                    <div class="text-center mt-6">
+                        <p class="text-gray-400 text-sm mb-4">Follow us for daily updates on fresh flavors and market availability!</p>
+                        <div class="flex justify-center space-x-4">
                             <a href="https://www.facebook.com/profile.php?id=100063506773511" 
                                target="_blank" 
-                               class="text-yellow-400 hover:text-yellow-300">
-                                View on Facebook
+                               class="blessed-button px-4 py-2 rounded text-sm">
+                                <i class="fab fa-facebook"></i> Follow on Facebook
+                            </a>
+                            <a href="https://www.instagram.com/blessed_bites16/" 
+                               target="_blank" 
+                               class="blessed-button px-4 py-2 rounded text-sm">
+                                <i class="fab fa-instagram"></i> Follow on Instagram
                             </a>
                         </div>
                     </div>
-
-                    <div class="facebook-post">
-                        <div class="flex items-center mb-4">
-                            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
-                                 alt="Blessed Bites" 
-                                 class="w-12 h-12 rounded-full mr-3">
-                            <div>
-                                <h4 class="font-bold text-yellow-400">Blessed Bites</h4>
-                                <p class="text-sm text-gray-400">1 day ago</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-4">
-                            🎂 New bundt cake flavors coming this week! Lemon glaze, chocolate chip, and our signature 
-                            strawberry cream. Pre-orders are now open - message us or call (205) 523-6459!
-                        </p>
-                        <div class="flex items-center justify-between text-sm text-gray-400">
-                            <div class="flex items-center space-x-4">
-                                <span><i class="fas fa-heart text-red-400"></i> 31 likes</span>
-                                <span><i class="fas fa-comment text-blue-400"></i> 12 comments</span>
-                            </div>
-                            <a href="https://www.facebook.com/profile.php?id=100063506773511" 
-                               target="_blank" 
-                               class="text-yellow-400 hover:text-yellow-300">
-                                View on Facebook
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="facebook-post">
-                        <div class="flex items-center mb-4">
-                            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
-                                 alt="Blessed Bites" 
-                                 class="w-12 h-12 rounded-full mr-3">
-                            <div>
-                                <h4 class="font-bold text-yellow-400">Blessed Bites</h4>
-                                <p class="text-sm text-gray-400">3 days ago</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-4">
-                            📦 Getting ready for another busy weekend! Orders are already coming in for our 
-                            signature dessert boxes. Thank you for all the love and support! ❤️
-                        </p>
-                        <div class="flex items-center justify-between text-sm text-gray-400">
-                            <div class="flex items-center space-x-4">
-                                <span><i class="fas fa-heart text-red-400"></i> 18 likes</span>
-                                <span><i class="fas fa-comment text-blue-400"></i> 5 comments</span>
-                            </div>
-                            <a href="https://www.facebook.com/profile.php?id=100063506773511" 
-                               target="_blank" 
-                               class="text-yellow-400 hover:text-yellow-300">
-                                View on Facebook
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Fallback message -->
-                <div id="feed-error" style="display: none;" class="text-center py-8">
-                    <p class="text-gray-300 mb-4">Stay updated with our latest creations!</p>
-                    <a href="https://www.facebook.com/profile.php?id=100063506773511" 
-                       target="_blank" 
-                       class="blessed-button px-6 py-3 rounded">
-                        <i class="fab fa-facebook-f mr-2"></i>
-                        Follow Us on Facebook
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Order Section -->
-    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+    <section class="py-16 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span style="color: var(--blessed-gold);">Create Your</span> Blessed Box
@@ -679,7 +686,7 @@
     </section>
 
     <!-- Order Summary -->
-    <section class="py-12 px-4" style="background: var(--blessed-black);">
+    <section class="py-12 px-4" style="background: var(--blessed-dark-gray);">
         <div class="container mx-auto max-w-2xl">
             <div class="blessed-card rounded-lg p-8">
                 <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--blessed-gold);">Complete Your Order</h3>
@@ -695,8 +702,7 @@
                     </div>
                 </div>
 
-                <form action="https://formspree.io/f/xblaepyv" method="POST">
-                    <input type="hidden" name="_subject" value="New Blessed Bites Order">
+                <form action="https://formspree.io/f/xdknvoen" method="POST">
                     <input type="hidden" name="order-items" id="order-items-hidden">
                     <input type="hidden" name="order-total" id="order-total-hidden">
 
@@ -730,11 +736,11 @@
                             <label class="block text-sm font-bold mb-2">Payment Method *</label>
                             <select name="payment-method" class="blessed-input w-full p-3 rounded" required>
                                 <option value="">Select Payment</option>
-                                <option value="venmo">Venmo ((205) 523-6459)</option>
-                                <option value="square">Square Payment Processing</option>
-                                <option value="apple-pay">Apple Pay ((205) 523-6459)</option>
+                                <option value="venmo">Venmo (205) 523-6459</option>
+                                <option value="square">Square Payment</option>
+                                <option value="apple-pay">Apple Pay (205) 523-6459</option>
                                 <option value="paypal">PayPal</option>
-                                <option value="zelle">Zelle ((205) 523-6459)</option>
+                                <option value="zelle">Zelle (205) 523-6459</option>
                                 <option value="cash">Cash (on pickup/delivery)</option>
                             </select>
                         </div>
@@ -774,7 +780,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+    <section class="py-16 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--blessed-gold);">What Our Customers Say</h2>
             
@@ -819,7 +825,7 @@
     </section>
 
     <!-- Location -->
-    <section class="py-16 px-4" style="background: var(--blessed-black);">
+    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-bold mb-8" style="color: var(--blessed-gold);">Visit Us at the Market</h2>
             
@@ -845,68 +851,66 @@
     </section>
 
     <!-- Disclosure Section -->
-    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+    <section class="py-12 px-4" style="background: var(--blessed-black);">
         <div class="container mx-auto max-w-4xl">
-            <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--blessed-gold);">Disclosure</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Food Safety & Allergens -->
-                <div class="blessed-card rounded-lg p-6">
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
-                        <i class="fas fa-shield-alt mr-2"></i>Food Safety & Allergens
-                    </h3>
-                    <div class="text-sm text-gray-300 space-y-3">
-                        <p><strong>Home Kitchen Operation:</strong> Blessed Bites operates from a home kitchen that is not subject to public health inspection.</p>
-                        <p><strong>Allergen Warning:</strong> Our products may contain or come into contact with common allergens including nuts, dairy, eggs, and gluten.</p>
-                        <p><strong>Food Handling:</strong> All products are prepared with care following safe food handling practices.</p>
-                        <p><strong>Freshness:</strong> Lemonades are best consumed within 3-5 days. Desserts should be refrigerated and consumed within recommended timeframes.</p>
+            <div class="blessed-card rounded-lg p-8">
+                <h2 class="text-3xl font-bold text-center mb-8" style="color: var(--blessed-gold);">Disclosure</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-yellow-400">Food Safety & Allergens</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• All products are prepared in a home kitchen</li>
+                            <li>• Not subject to state inspection</li>
+                            <li>• May contain allergens including nuts, dairy, eggs</li>
+                            <li>• Please inform us of any food allergies</li>
+                            <li>• Products are made fresh to order</li>
+                            <li>• Refrigeration required for all items</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-yellow-400">Order & Payment Policies</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• 24-48 hours advance notice preferred</li>
+                            <li>• Orders confirmed upon payment receipt</li>
+                            <li>• Cancellations accepted up to 12 hours before pickup</li>
+                            <li>• Delivery available within Tuscaloosa area</li>
+                            <li>• Delivery fee may apply based on distance</li>
+                            <li>• Payment due upon order confirmation</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-yellow-400">Business Information</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Licensed home food processor</li>
+                            <li>• Operating hours: Tue-Sat, 8AM-6PM</li>
+                            <li>• Located in Tuscaloosa, Alabama</li>
+                            <li>• Available at Farmers Market Saturdays</li>
+                            <li>• Custom orders by appointment</li>
+                            <li>• Seasonal menu variations may apply</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-yellow-400">Liability & Quality</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• We guarantee freshness and quality</li>
+                            <li>• Satisfaction guaranteed or replacement offered</li>
+                            <li>• Customer assumes responsibility for proper storage</li>
+                            <li>• Not liable for issues from improper handling</li>
+                            <li>• All sales subject to product availability</li>
+                            <li>• Prices subject to change without notice</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Order & Payment Policies -->
-                <div class="blessed-card rounded-lg p-6">
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
-                        <i class="fas fa-clipboard-list mr-2"></i>Order & Payment Policies
-                    </h3>
-                    <div class="text-sm text-gray-300 space-y-3">
-                        <p><strong>Advance Notice:</strong> Orders require 24-48 hour advance notice for preparation.</p>
-                        <p><strong>Payment:</strong> Payment is due upon order confirmation or at pickup/delivery.</p>
-                        <p><strong>Cancellation:</strong> Orders may be cancelled up to 12 hours before scheduled pickup/delivery.</p>
-                        <p><strong>Delivery Fees:</strong> Local delivery available within 15 miles of Tuscaloosa with additional fees.</p>
-                    </div>
+                <div class="mt-8 p-4 bg-yellow-500 bg-opacity-10 rounded-lg border border-yellow-500 border-opacity-30">
+                    <p class="text-center text-yellow-400 font-bold">
+                        <i class="fas fa-info-circle"></i> For questions or concerns, please contact us at (205) 523-6459 or orders@blessedbites.online
+                    </p>
                 </div>
-
-                <!-- Business Information -->
-                <div class="blessed-card rounded-lg p-6">
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
-                        <i class="fas fa-info-circle mr-2"></i>Business Information
-                    </h3>
-                    <div class="text-sm text-gray-300 space-y-3">
-                        <p><strong>Business Owner:</strong> Dri Williams</p>
-                        <p><strong>Location:</strong> Tuscaloosa, Alabama</p>
-                        <p><strong>Operating Hours:</strong> Orders accepted daily, pickup available at Farmers Market Saturdays 7 AM - 12 PM</p>
-                        <p><strong>Licensing:</strong> Operating under Alabama cottage food laws and regulations.</p>
-                    </div>
-                </div>
-
-                <!-- Liability & Quality -->
-                <div class="blessed-card rounded-lg p-6">
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
-                        <i class="fas fa-heart mr-2"></i>Quality & Satisfaction
-                    </h3>
-                    <div class="text-sm text-gray-300 space-y-3">
-                        <p><strong>Quality Guarantee:</strong> We stand behind the quality of our products and customer satisfaction.</p>
-                        <p><strong>Custom Orders:</strong> Special requests and custom flavors available with advance notice.</p>
-                        <p><strong>Seasonal Availability:</strong> Some flavors and items may be seasonal based on ingredient availability.</p>
-                        <p><strong>Contact:</strong> Questions or concerns should be directed to (205) 523-6459 or orders@blessedbites.online</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-8">
-                <p class="text-gray-400 text-sm">
-                    By placing an order, you acknowledge that you have read and agree to these terms and disclosures.
-                </p>
             </div>
         </div>
     </section>
@@ -928,12 +932,8 @@
 
             <div class="mb-6">
                 <h3 class="text-lg font-bold mb-4">Payment Options</h3>
-                <div class="text-gray-300 space-y-1">
-                    <p>Venmo: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
-                    <p>Square Payment Processing</p>
-                    <p>Apple Pay: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
-                    <p>Zelle: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
-                </div>
+                <p class="text-gray-300">Venmo: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
+                <p class="text-gray-300">Square • Apple Pay • PayPal • Zelle • Cash</p>
             </div>
 
             <div class="border-t border-gray-600 pt-6">
@@ -949,12 +949,36 @@
     </footer>
 
     <script>
-        // Initialize Facebook feed
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.getElementById('feed-loading').style.display = 'none';
-                document.getElementById('feed-content').style.display = 'block';
-            }, 2000);
+        // Facebook SDK Error Handling
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: 'your-app-id', // You would need to register a Facebook app for this
+                xfbml: true,
+                version: 'v18.0'
+            });
+        };
+
+        // Fallback if Facebook fails to load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const fbElements = document.querySelectorAll('.fb-page');
+                fbElements.forEach(function(element) {
+                    if (element.clientHeight === 0) {
+                        element.innerHTML = `
+                            <div class="facebook-fallback">
+                                <i class="fab fa-facebook"></i>
+                                <h4>Facebook Feed Unavailable</h4>
+                                <p>Visit our Facebook page directly to see our latest updates!</p>
+                                <a href="https://www.facebook.com/profile.php?id=100063506773511" 
+                                   target="_blank" 
+                                   class="blessed-button px-6 py-3 rounded inline-block">
+                                    Visit Our Facebook Page
+                                </a>
+                            </div>
+                        `;
+                    }
+                });
+            }, 5000); // Check after 5 seconds
         });
 
         // Cart functionality
