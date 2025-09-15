@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Blessed Box - Order Fresh Lemonades & Desserts | Blessed Bites</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blessed-gold: #FFD700;
+            --blessed-black: #000000;
+            --blessed-dark-gray: #1a1a1a;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--blessed-black);
+            color: white;
+            font-family: 'Georgia', serif;
+        }
+
+        .blessed-container {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+
+        .blessed-card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid #333;
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
+        }
+
+        .blessed-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .blessed-button {
+            background: linear-gradient(45deg, var(--blessed-gold), #FFA500);
+            color: var(--blessed-black);
+            border: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .blessed-button:hover {
+            background: linear-gradient(45deg, #FFA500, var(--blessed-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .blessed-input {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid #333;
+            color: white;
+        }
+
+        .blessed-input:focus {
+            border-color: var(--blessed-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .blessed-box {
+            min-height: 200px;
+            border: 3px dashed var(--blessed-gold);
+            background: rgba(26, 26, 26, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blessed-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .blessed-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--blessed-gold);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin: 4px;
+            display: inline-block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .price-highlight {
+            color: var(--blessed-gold);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .tab-button {
+            background: rgba(26, 26, 26, 0.8);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: var(--blessed-gold);
+            color: var(--blessed-black);
+            border-bottom-color: #FFA500;
+        }
+
+        .social-icon {
+            color: var(--blessed-gold);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #FFA500;
+            transform: scale(1.2);
+        }
+
+        .facebook-feed-container {
+            background: var(--blessed-dark-gray);
+        }
+
+        .facebook-post {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .facebook-post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+        }
+
+        .loading-spinner {
+            border: 3px solid #333;
+            border-top: 3px solid var(--blessed-gold);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="blessed-container">
+    <!-- Header -->
+    <header class="py-6 px-4" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);">
+        <div class="container mx-auto text-center">
+            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
+                 alt="Blessed Bites Logo" 
+                 class="mx-auto mb-4" 
+                 style="height: 200px; width: auto;">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                <span style="color: var(--blessed-gold);">Blessed</span> 
+                <span class="text-white">Bites</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-6">Blessing your taste buds with delicious flavors</p>
+            <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
+                <span><i class="fas fa-phone text-yellow-400"></i> (205) 523-6459</span>
+                <span><i class="fas fa-envelope text-yellow-400"></i> orders@blessedbites.online</span>
+                <span><i class="fab fa-instagram text-yellow-400"></i> @blessed_bites16</span>
+                <a href="https://www.facebook.com/profile.php?id=100063506773511" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="py-16 px-4" style="background: var(--blessed-black);">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/5159be641b27e59ff009c5df363885d1" 
+                         alt="Dri Williams at Farmers Market" 
+                         class="rounded-lg shadow-2xl w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-bold mb-6">Meet Dri Williams</h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Proudly operating out of Tuscaloosa, Blessed Bites is looking to bless your taste buds with delicious flavors. 
+                        Dri Williams specializes in fruit-infused lemonades and homemade desserts that bring joy to every gathering.
+                    </p>
+                    <p class="text-lg text-gray-300">
+                        From strawberry pineapple lemonades to decadent cheesecakes, every item is made with love and the finest ingredients. 
+                        Visit us at the Tuscaloosa Farmers Market every Saturday!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Updates Section -->
+    <section class="py-16 px-4 facebook-feed-container">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">
+                <span style="color: var(--blessed-gold);">Latest</span> 
+                <span class="text-white">Updates</span>
+            </h2>
+            
+            <div id="facebook-feed" class="max-w-4xl mx-auto">
+                <!-- Loading state -->
+                <div id="feed-loading" class="text-center">
+                    <div class="loading-spinner"></div>
+                    <p class="text-gray-300">Loading latest updates from Blessed Bites...</p>
+                </div>
+                
+                <!-- Feed content will be loaded here -->
+                <div id="feed-content" style="display: none;">
+                    <!-- Sample posts for demonstration -->
+                    <div class="facebook-post">
+                        <div class="flex items-center mb-4">
+                            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
+                                 alt="Blessed Bites" 
+                                 class="w-12 h-12 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-yellow-400">Blessed Bites</h4>
+                                <p class="text-sm text-gray-400">2 hours ago</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            🍋✨ Fresh batch of Strawberry Pineapple lemonades ready for this weekend! 
+                            The perfect blend of sweet and tangy that our customers absolutely love. 
+                            Who's ready for the Farmers Market tomorrow? 
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-400">
+                            <div class="flex items-center space-x-4">
+                                <span><i class="fas fa-heart text-red-400"></i> 24 likes</span>
+                                <span><i class="fas fa-comment text-blue-400"></i> 8 comments</span>
+                            </div>
+                            <a href="https://www.facebook.com/profile.php?id=100063506773511" 
+                               target="_blank" 
+                               class="text-yellow-400 hover:text-yellow-300">
+                                View on Facebook
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="facebook-post">
+                        <div class="flex items-center mb-4">
+                            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
+                                 alt="Blessed Bites" 
+                                 class="w-12 h-12 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-yellow-400">Blessed Bites</h4>
+                                <p class="text-sm text-gray-400">1 day ago</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            🎂 New bundt cake flavors coming this week! Lemon glaze, chocolate chip, and our signature 
+                            strawberry cream. Pre-orders are now open - message us or call (205) 523-6459!
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-400">
+                            <div class="flex items-center space-x-4">
+                                <span><i class="fas fa-heart text-red-400"></i> 31 likes</span>
+                                <span><i class="fas fa-comment text-blue-400"></i> 12 comments</span>
+                            </div>
+                            <a href="https://www.facebook.com/profile.php?id=100063506773511" 
+                               target="_blank" 
+                               class="text-yellow-400 hover:text-yellow-300">
+                                View on Facebook
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="facebook-post">
+                        <div class="flex items-center mb-4">
+                            <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
+                                 alt="Blessed Bites" 
+                                 class="w-12 h-12 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-yellow-400">Blessed Bites</h4>
+                                <p class="text-sm text-gray-400">3 days ago</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            📦 Getting ready for another busy weekend! Orders are already coming in for our 
+                            signature dessert boxes. Thank you for all the love and support! ❤️
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-400">
+                            <div class="flex items-center space-x-4">
+                                <span><i class="fas fa-heart text-red-400"></i> 18 likes</span>
+                                <span><i class="fas fa-comment text-blue-400"></i> 5 comments</span>
+                            </div>
+                            <a href="https://www.facebook.com/profile.php?id=100063506773511" 
+                               target="_blank" 
+                               class="text-yellow-400 hover:text-yellow-300">
+                                View on Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fallback message -->
+                <div id="feed-error" style="display: none;" class="text-center py-8">
+                    <p class="text-gray-300 mb-4">Stay updated with our latest creations!</p>
+                    <a href="https://www.facebook.com/profile.php?id=100063506773511" 
+                       target="_blank" 
+                       class="blessed-button px-6 py-3 rounded">
+                        <i class="fab fa-facebook-f mr-2"></i>
+                        Follow Us on Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12">
+                <span style="color: var(--blessed-gold);">Create Your</span> Blessed Box
+            </h2>
+
+            <!-- Order Tabs -->
+            <div class="flex flex-wrap justify-center mb-8">
+                <button class="tab-button active px-6 py-3 mx-1 mb-2 rounded-t-lg" onclick="showTab('quick-order')">
+                    <i class="fas fa-list"></i> Quick Order
+                </button>
+                <button class="tab-button px-6 py-3 mx-1 mb-2 rounded-t-lg" onclick="showTab('box-builder')">
+                    <i class="fas fa-box"></i> Build Your Box
+                </button>
+                <button class="tab-button px-6 py-3 mx-1 mb-2 rounded-t-lg" onclick="showTab('dri-favorites')">
+                    <i class="fas fa-heart"></i> Dri's Favorites
+                </button>
+            </div>
+
+            <!-- Quick Order Tab -->
+            <div id="quick-order" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Lemonades -->
+                    <div class="blessed-card rounded-lg p-6">
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--blessed-gold);">
+                            <i class="fas fa-glass-water"></i> Fresh Lemonades
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Pint Pouches - $4 each</h4>
+                                <p class="text-sm text-gray-400 mb-3">4 for $15</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Flavor</option>
+                                    <option value="strawberry-pineapple">Strawberry Pineapple</option>
+                                    <option value="strawberry">Strawberry</option>
+                                    <option value="pineapple">Pineapple</option>
+                                    <option value="peach">Peach</option>
+                                    <option value="strawberry-peach">Strawberry Peach</option>
+                                    <option value="blue-wave">Blue Wave</option>
+                                    <option value="tropical-pina-colada">Tropical Pina Colada</option>
+                                    <option value="grape-guava">Grape Guava</option>
+                                    <option value="watermelon">Watermelon</option>
+                                    <option value="watermelon-strawberry">Watermelon Strawberry</option>
+                                    <option value="strawberry-punch">Strawberry Punch</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('pint-pouch', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Quarts - $6 each</h4>
+                                <p class="text-sm text-gray-400 mb-3">4 for $20</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Flavor</option>
+                                    <option value="strawberry-pineapple">Strawberry Pineapple</option>
+                                    <option value="strawberry">Strawberry</option>
+                                    <option value="pineapple">Pineapple</option>
+                                    <option value="peach">Peach</option>
+                                    <option value="strawberry-peach">Strawberry Peach</option>
+                                    <option value="blue-wave">Blue Wave</option>
+                                    <option value="tropical-pina-colada">Tropical Pina Colada</option>
+                                    <option value="grape-guava">Grape Guava</option>
+                                    <option value="watermelon">Watermelon</option>
+                                    <option value="watermelon-strawberry">Watermelon Strawberry</option>
+                                    <option value="strawberry-punch">Strawberry Punch</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('quart', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Half Gallons - $12 each</h4>
+                                <p class="text-sm text-gray-400 mb-3">2 for $20</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Flavor</option>
+                                    <option value="strawberry-pineapple">Strawberry Pineapple</option>
+                                    <option value="strawberry">Strawberry</option>
+                                    <option value="pineapple">Pineapple</option>
+                                    <option value="peach">Peach</option>
+                                    <option value="strawberry-peach">Strawberry Peach</option>
+                                    <option value="blue-wave">Blue Wave</option>
+                                    <option value="tropical-pina-colada">Tropical Pina Colada</option>
+                                    <option value="grape-guava">Grape Guava</option>
+                                    <option value="watermelon">Watermelon</option>
+                                    <option value="watermelon-strawberry">Watermelon Strawberry</option>
+                                    <option value="strawberry-punch">Strawberry Punch</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('half-gallon', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Gallons - $20 each</h4>
+                                <p class="text-sm text-gray-400 mb-3">4 for $75</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Flavor</option>
+                                    <option value="strawberry-pineapple">Strawberry Pineapple</option>
+                                    <option value="strawberry">Strawberry</option>
+                                    <option value="pineapple">Pineapple</option>
+                                    <option value="peach">Peach</option>
+                                    <option value="strawberry-peach">Strawberry Peach</option>
+                                    <option value="blue-wave">Blue Wave</option>
+                                    <option value="tropical-pina-colada">Tropical Pina Colada</option>
+                                    <option value="grape-guava">Grape Guava</option>
+                                    <option value="watermelon">Watermelon</option>
+                                    <option value="watermelon-strawberry">Watermelon Strawberry</option>
+                                    <option value="strawberry-punch">Strawberry Punch</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('gallon', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Quart Mason Jars - $8 each</h4>
+                                <p class="text-sm text-gray-400 mb-3">4 for $30</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Flavor</option>
+                                    <option value="strawberry-pineapple">Strawberry Pineapple</option>
+                                    <option value="strawberry">Strawberry</option>
+                                    <option value="pineapple">Pineapple</option>
+                                    <option value="peach">Peach</option>
+                                    <option value="strawberry-peach">Strawberry Peach</option>
+                                    <option value="blue-wave">Blue Wave</option>
+                                    <option value="tropical-pina-colada">Tropical Pina Colada</option>
+                                    <option value="grape-guava">Grape Guava</option>
+                                    <option value="watermelon">Watermelon</option>
+                                    <option value="watermelon-strawberry">Watermelon Strawberry</option>
+                                    <option value="strawberry-punch">Strawberry Punch</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('mason-jar', this)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desserts -->
+                    <div class="blessed-card rounded-lg p-6">
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--blessed-gold);">
+                            <i class="fas fa-birthday-cake"></i> Homemade Desserts
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Bundt Cakes - $35</h4>
+                                <p class="text-sm text-gray-400 mb-3">Ask about flavors</p>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('bundt-cake', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Banana Pudding Pans</h4>
+                                <p class="text-sm text-gray-400 mb-3">Small $20 | Medium $40 | Large $60</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Size</option>
+                                    <option value="small">Small ($20)</option>
+                                    <option value="medium">Medium ($40)</option>
+                                    <option value="large">Large ($60)</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('banana-pudding', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Better Than Sex Cake Pans</h4>
+                                <p class="text-sm text-gray-400 mb-3">Small $25 | Medium $45 | Large $65</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Size</option>
+                                    <option value="small">Small ($25)</option>
+                                    <option value="medium">Medium ($45)</option>
+                                    <option value="large">Large ($65)</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('better-than-sex', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Strawberry No Bake Cheesecake Pans</h4>
+                                <p class="text-sm text-gray-400 mb-3">Small $25 | Medium $50 | Large $65</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Size</option>
+                                    <option value="small">Small ($25)</option>
+                                    <option value="medium">Medium ($50)</option>
+                                    <option value="large">Large ($65)</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('cheesecake', this)">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="blessed-card p-4 rounded">
+                                <h4 class="font-bold text-lg mb-2">Strawberry Shortcake Pans</h4>
+                                <p class="text-sm text-gray-400 mb-3">Small $22 | Medium $42 | Large $60</p>
+                                <select class="blessed-input w-full p-2 rounded mb-2">
+                                    <option value="">Select Size</option>
+                                    <option value="small">Small ($22)</option>
+                                    <option value="medium">Medium ($42)</option>
+                                    <option value="large">Large ($60)</option>
+                                </select>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" min="0" class="blessed-input w-20 p-2 rounded" placeholder="Qty">
+                                    <button class="blessed-button px-4 py-2 rounded" onclick="addToCart('shortcake', this)">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box Builder Tab -->
+            <div id="box-builder" class="tab-content hidden">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Build Your Custom Blessed Box</h3>
+                    <p class="text-gray-300">Click items below to add them to your custom box!</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">Available Items</h4>
+                        <div class="space-y-2">
+                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Strawberry Pineapple Lemonade - Quart', 6)">
+                                Strawberry Pineapple Lemonade - Quart ($6)
+                            </button>
+                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Peach Lemonade - Mason Jar', 8)">
+                                Peach Lemonade - Mason Jar ($8)
+                            </button>
+                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Banana Pudding - Small Pan', 20)">
+                                Banana Pudding - Small Pan ($20)
+                            </button>
+                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Better Than Sex Cake - Small', 25)">
+                                Better Than Sex Cake - Small ($25)
+                            </button>
+                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Strawberry Cheesecake - Small', 25)">
+                                Strawberry Cheesecake - Small ($25)
+                            </button>
+                            <button class="blessed-button w-full p-3 text-left rounded" onclick="addToBox('Bundt Cake', 35)">
+                                Bundt Cake ($35)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">Your Blessed Box</h4>
+                        <div id="blessed-box" class="blessed-box rounded-lg p-6 flex flex-col items-center justify-center text-center">
+                            <i class="fas fa-box-open text-6xl text-yellow-400 mb-4"></i>
+                            <p class="text-lg">Your blessed items will appear here!</p>
+                            <p class="text-sm text-gray-400 mt-2">Click items on the left to add them</p>
+                        </div>
+                        <div class="mt-4 p-4 blessed-card rounded">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold">Box Total:</span>
+                                <span id="box-total" class="price-highlight">$0.00</span>
+                            </div>
+                            <button id="add-box-to-cart" class="blessed-button w-full mt-4 p-3 rounded" onclick="addBoxToCart()" style="display: none;">
+                                Add Box to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dri's Favorites Tab -->
+            <div id="dri-favorites" class="tab-content hidden">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Dri's Signature Bundles</h3>
+                    <p class="text-gray-300">Hand-picked combinations that customers love most!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="blessed-card rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-users text-4xl" style="color: var(--blessed-gold);"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Family Feast</h4>
+                        <p class="text-gray-400 mb-4">Feed the whole family</p>
+                        <div class="text-sm mb-4">
+                            <p>• 1 Lemonade Gallon</p>
+                            <p>• 2 Quart Mason Jars (different flavors)</p>
+                            <p>• 1 Large Banana Pudding</p>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-gray-400 line-through">Regular Price: $96</span><br>
+                            <span class="price-highlight text-2xl">Bundle: $85</span>
+                        </div>
+                        <button class="blessed-button px-6 py-3 rounded w-full" onclick="addBundleToCart('family-feast', 85)">
+                            Add to Order
+                        </button>
+                    </div>
+
+                    <div class="blessed-card rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-glass-water text-4xl" style="color: var(--blessed-gold);"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Lemonade Lover</h4>
+                        <p class="text-gray-400 mb-4">For the lemonade enthusiast</p>
+                        <div class="text-sm mb-4">
+                            <p>• 8 Pint Pouches (2 of each: Strawberry Pineapple, Peach, Blue Wave, Watermelon)</p>
+                            <p>• 2 Quart Mason Jars (your choice)</p>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-gray-400 line-through">Regular Price: $48</span><br>
+                            <span class="price-highlight text-2xl">Bundle: $42</span>
+                        </div>
+                        <button class="blessed-button px-6 py-3 rounded w-full" onclick="addBundleToCart('lemonade-lover', 42)">
+                            Add to Order
+                        </button>
+                    </div>
+
+                    <div class="blessed-card rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-heart text-4xl" style="color: var(--blessed-gold);"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Dessert Paradise</h4>
+                        <p class="text-gray-400 mb-4">For the sweet tooth</p>
+                        <div class="text-sm mb-4">
+                            <p>• 1 Small of each: Banana Pudding, Better Than Sex Cake, Strawberry Cheesecake</p>
+                            <p>• 2 Lemonade Quarts</p>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-gray-400 line-through">Regular Price: $82</span><br>
+                            <span class="price-highlight text-2xl">Bundle: $75</span>
+                        </div>
+                        <button class="blessed-button px-6 py-3 rounded w-full" onclick="addBundleToCart('dessert-paradise', 75)">
+                            Add to Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Summary -->
+    <section class="py-12 px-4" style="background: var(--blessed-black);">
+        <div class="container mx-auto max-w-2xl">
+            <div class="blessed-card rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--blessed-gold);">Complete Your Order</h3>
+                
+                <div class="mb-6">
+                    <h4 class="text-lg font-bold mb-4">Order Summary</h4>
+                    <div id="cart-items" class="min-h-16 p-4 blessed-input rounded">
+                        <p class="text-gray-400">Your items will appear here as you add them to your order.</p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 p-4 blessed-card rounded">
+                        <span class="text-lg font-bold">Total:</span>
+                        <span id="cart-total" class="price-highlight text-2xl">$0.00</span>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/xdknvoen" method="POST">
+                    <input type="hidden" name="_subject" value="New Blessed Bites Order">
+                    <input type="hidden" name="order-items" id="order-items-hidden">
+                    <input type="hidden" name="order-total" id="order-total-hidden">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Full Name *</label>
+                            <input type="text" name="full-name" class="blessed-input w-full p-3 rounded" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Phone Number *</label>
+                            <input type="tel" name="phone" class="blessed-input w-full p-3 rounded" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Email Address *</label>
+                        <input type="email" name="email" class="blessed-input w-full p-3 rounded" required>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Pickup/Delivery *</label>
+                            <select name="pickup-delivery" class="blessed-input w-full p-3 rounded" required>
+                                <option value="">Select Option</option>
+                                <option value="pickup-farmers-market">Pickup at Farmers Market</option>
+                                <option value="pickup-location">Pickup at Location</option>
+                                <option value="delivery">Delivery</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Payment Method *</label>
+                            <select name="payment-method" class="blessed-input w-full p-3 rounded" required>
+                                <option value="">Select Payment</option>
+                                <option value="venmo">Venmo ((205) 523-6459)</option>
+                                <option value="square">Square Payment Processing</option>
+                                <option value="apple-pay">Apple Pay ((205) 523-6459)</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="zelle">Zelle ((205) 523-6459)</option>
+                                <option value="cash">Cash (on pickup/delivery)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="blessed-card p-4 rounded mb-4">
+                            <h4 class="font-bold mb-2">Order Details</h4>
+                            <div id="order-summary-display" class="text-sm text-gray-300">
+                                Items will appear here when you add them to your order.
+                            </div>
+                            <div class="mt-2 pt-2 border-t border-gray-600">
+                                <div class="flex justify-between">
+                                    <span class="font-bold">Total:</span>
+                                    <span id="final-total" class="price-highlight">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold mb-2">Special Instructions</label>
+                        <textarea name="special-instructions" class="blessed-input w-full p-3 rounded h-24" 
+                                  placeholder="Any special requests, flavor preferences, or delivery instructions..."></textarea>
+                    </div>
+
+                    <button type="submit" class="blessed-button w-full py-4 text-lg font-bold rounded">
+                        <i class="fas fa-heart"></i> Place Your Blessed Order
+                    </button>
+                    
+                    <p class="text-center text-sm text-gray-400 mt-4">
+                        Orders are processed within 24 hours. You'll receive confirmation and payment instructions via email.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--blessed-gold);">What Our Customers Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="blessed-card rounded-lg p-6 text-center">
+                    <div class="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-300 mb-4 italic">
+                        "SO YUMMY! I got one of the lemonades at the Tuscaloosa Farmers Market today after trying it for the first time. 
+                        I got the strawberry pineapple flavor and I will definitely be back for more!"
+                    </p>
+                    <div class="border-t border-gray-600 pt-4">
+                        <p class="font-bold">- Verified Customer</p>
+                        <p class="text-sm text-gray-400">Yelp Review</p>
+                    </div>
+                </div>
+
+                <div class="blessed-card rounded-lg p-6 text-center">
+                    <div class="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-300 mb-4 italic">
+                        "Dri always does a great video of what's fresh at the market each week. The quality and flavor of everything is amazing. 
+                        Blessed Bites is a must-visit!"
+                    </p>
+                    <div class="border-t border-gray-600 pt-4">
+                        <p class="font-bold">- Market Regular</p>
+                        <p class="text-sm text-gray-400">Farmers Market</p>
+                    </div>
+                </div>
+
+                <div class="blessed-card rounded-lg p-6 text-center">
+                    <div class="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-300 mb-4 italic">
+                        "The desserts are incredible and the lemonades are so refreshing! Perfect for our family gatherings. 
+                        Dri puts so much love into everything she makes."
+                    </p>
+                    <div class="border-t border-gray-600 pt-4">
+                        <p class="font-bold">- Happy Family</p>
+                        <p class="text-sm text-gray-400">Regular Customer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section class="py-16 px-4" style="background: var(--blessed-black);">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8" style="color: var(--blessed-gold);">Visit Us at the Market</h2>
+            
+            <div class="blessed-card rounded-lg p-8 max-w-2xl mx-auto">
+                <h3 class="text-xl font-bold mb-4">Tuscaloosa Farmers Market</h3>
+                <p class="text-lg mb-2">1900 Jack Warner Parkway</p>
+                <p class="text-lg mb-6">Tuscaloosa, AL 35404</p>
+                
+                <div class="text-yellow-400 text-lg font-bold mb-4">
+                    <i class="fas fa-clock"></i> Saturdays: 7:00 AM - 12:00 PM
+                </div>
+                
+                <p class="text-gray-300 mb-6">
+                    Find us at our booth with fresh lemonades and desserts!
+                </p>
+
+                <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
+                    <span><i class="fas fa-phone text-yellow-400"></i> Call: (205) 523-6459</span>
+                    <span><i class="fas fa-envelope text-yellow-400"></i> orders@blessedbites.online</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclosure Section -->
+    <section class="py-16 px-4" style="background: var(--blessed-dark-gray);">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-12" style="color: var(--blessed-gold);">Disclosure</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Food Safety & Allergens -->
+                <div class="blessed-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
+                        <i class="fas fa-shield-alt mr-2"></i>Food Safety & Allergens
+                    </h3>
+                    <div class="text-sm text-gray-300 space-y-3">
+                        <p><strong>Home Kitchen Operation:</strong> Blessed Bites operates from a home kitchen that is not subject to public health inspection.</p>
+                        <p><strong>Allergen Warning:</strong> Our products may contain or come into contact with common allergens including nuts, dairy, eggs, and gluten.</p>
+                        <p><strong>Food Handling:</strong> All products are prepared with care following safe food handling practices.</p>
+                        <p><strong>Freshness:</strong> Lemonades are best consumed within 3-5 days. Desserts should be refrigerated and consumed within recommended timeframes.</p>
+                    </div>
+                </div>
+
+                <!-- Order & Payment Policies -->
+                <div class="blessed-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
+                        <i class="fas fa-clipboard-list mr-2"></i>Order & Payment Policies
+                    </h3>
+                    <div class="text-sm text-gray-300 space-y-3">
+                        <p><strong>Advance Notice:</strong> Orders require 24-48 hour advance notice for preparation.</p>
+                        <p><strong>Payment:</strong> Payment is due upon order confirmation or at pickup/delivery.</p>
+                        <p><strong>Cancellation:</strong> Orders may be cancelled up to 12 hours before scheduled pickup/delivery.</p>
+                        <p><strong>Delivery Fees:</strong> Local delivery available within 15 miles of Tuscaloosa with additional fees.</p>
+                    </div>
+                </div>
+
+                <!-- Business Information -->
+                <div class="blessed-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
+                        <i class="fas fa-info-circle mr-2"></i>Business Information
+                    </h3>
+                    <div class="text-sm text-gray-300 space-y-3">
+                        <p><strong>Business Owner:</strong> Dri Williams</p>
+                        <p><strong>Location:</strong> Tuscaloosa, Alabama</p>
+                        <p><strong>Operating Hours:</strong> Orders accepted daily, pickup available at Farmers Market Saturdays 7 AM - 12 PM</p>
+                        <p><strong>Licensing:</strong> Operating under Alabama cottage food laws and regulations.</p>
+                    </div>
+                </div>
+
+                <!-- Liability & Quality -->
+                <div class="blessed-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--blessed-gold);">
+                        <i class="fas fa-heart mr-2"></i>Quality & Satisfaction
+                    </h3>
+                    <div class="text-sm text-gray-300 space-y-3">
+                        <p><strong>Quality Guarantee:</strong> We stand behind the quality of our products and customer satisfaction.</p>
+                        <p><strong>Custom Orders:</strong> Special requests and custom flavors available with advance notice.</p>
+                        <p><strong>Seasonal Availability:</strong> Some flavors and items may be seasonal based on ingredient availability.</p>
+                        <p><strong>Contact:</strong> Questions or concerns should be directed to (205) 523-6459 or orders@blessedbites.online</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <p class="text-gray-400 text-sm">
+                    By placing an order, you acknowledge that you have read and agree to these terms and disclosures.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4" style="background: var(--blessed-dark-gray);">
+        <div class="container mx-auto text-center">
+            <div class="mb-6">
+                <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.facebook.com/profile.php?id=100063506773511" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/blessed_bites16/" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-lg font-bold mb-4">Payment Options</h3>
+                <div class="text-gray-300 space-y-1">
+                    <p>Venmo: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
+                    <p>Square Payment Processing</p>
+                    <p>Apple Pay: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
+                    <p>Zelle: <span style="color: var(--blessed-gold);">(205) 523-6459</span></p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 pt-6">
+                <img src="https://page.gensparksite.com/v1/base64_upload/440d1e78e877f5df4697f0d4faf5f674" 
+                     alt="Blessed Bites Logo" 
+                     class="mx-auto mb-4" 
+                     style="height: 60px; width: auto;">
+                <h3 class="text-xl font-bold mb-2">Blessed Bites</h3>
+                <p class="text-gray-400">Tuscaloosa, AL</p>
+                <p class="text-gray-400 mt-4">© 2012 Blessed Bites. Made with ❤️ in Tuscaloosa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Facebook feed
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('feed-loading').style.display = 'none';
+                document.getElementById('feed-content').style.display = 'block';
+            }, 2000);
+        });
+
+        // Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Quick Order functionality
+        function addToCart(itemType, button) {
+            const container = button.closest('.blessed-card');
+            const flavorSelect = container.querySelector('select:first-of-type');
+            const sizeSelect = container.querySelector('select');
+            const quantityInput = container.querySelector('input[type="number"]');
+            
+            const quantity = parseInt(quantityInput.value);
+            if (!quantity || quantity < 1) {
+                alert('Please enter a quantity');
+                return;
+            }
+
+            let itemName = '';
+            let price = 0;
+            let flavor = '';
+            let size = '';
+
+            // Get item details based on type
+            switch(itemType) {
+                case 'pint-pouch':
+                    price = 4;
+                    itemName = 'Lemonade Pint Pouch';
+                    flavor = flavorSelect.value;
+                    break;
+                case 'quart':
+                    price = 6;
+                    itemName = 'Lemonade Quart';
+                    flavor = flavorSelect.value;
+                    break;
+                case 'half-gallon':
+                    price = 12;
+                    itemName = 'Lemonade Half Gallon';
+                    flavor = flavorSelect.value;
+                    break;
+                case 'gallon':
+                    price = 20;
+                    itemName = 'Lemonade Gallon';
+                    flavor = flavorSelect.value;
+                    break;
+                case 'mason-jar':
+                    price = 8;
+                    itemName = 'Quart Mason Jar';
+                    flavor = flavorSelect.value;
+                    break;
+                case 'bundt-cake':
+                    price = 35;
+                    itemName = 'Bundt Cake';
+                    break;
+                default:
+                    const sizeValue = sizeSelect.value;
+                    if (!sizeValue) {
+                        alert('Please select a size');
+                        return;
+                    }
+                    
+                    size = sizeValue;
+                    switch(itemType) {
+                        case 'banana-pudding':
+                            itemName = 'Banana Pudding Pan';
+                            price = sizeValue === 'small' ? 20 : sizeValue === 'medium' ? 40 : 60;
+                            break;
+                        case 'better-than-sex':
+                            itemName = 'Better Than Sex Cake Pan';
+                            price = sizeValue === 'small' ? 25 : sizeValue === 'medium' ? 45 : 65;
+                            break;
+                        case 'cheesecake':
+                            itemName = 'Strawberry No Bake Cheesecake Pan';
+                            price = sizeValue === 'small' ? 25 : sizeValue === 'medium' ? 50 : 65;
+                            break;
+                        case 'shortcake':
+                            itemName = 'Strawberry Shortcake Pan';
+                            price = sizeValue === 'small' ? 22 : sizeValue === 'medium' ? 42 : 60;
+                            break;
+                    }
+            }
+
+            if (flavor && !flavorSelect.value) {
+                alert('Please select a flavor');
+                return;
+            }
+
+            // Add to cart
+            for (let i = 0; i < quantity; i++) {
+                const item = {
+                    name: itemName,
+                    flavor: flavor || '',
+                    size: size || '',
+                    price: price
+                };
+                cart.push(item);
+            }
+
+            updateCartDisplay();
+            
+            // Reset form
+            quantityInput.value = '';
+            if (flavorSelect) flavorSelect.selectedIndex = 0;
+            if (sizeSelect && itemType !== 'quart') sizeSelect.selectedIndex = 0;
+            
+            // Show success message
+            showSuccessMessage(`Added ${quantity}x ${itemName} to your order!`);
+        }
+
+        // Box Builder functionality
+        let boxItems = [];
+        let boxTotal = 0;
+
+        function addToBox(itemName, price) {
+            boxItems.push({name: itemName, price: price});
+            boxTotal += price;
+            updateBoxDisplay();
+        }
+
+        function updateBoxDisplay() {
+            const boxElement = document.getElementById('blessed-box');
+            const totalElement = document.getElementById('box-total');
+            const addButton = document.getElementById('add-box-to-cart');
+
+            if (boxItems.length === 0) {
+                boxElement.innerHTML = `
+                    <i class="fas fa-box-open text-6xl text-yellow-400 mb-4"></i>
+                    <p class="text-lg">Your blessed items will appear here!</p>
+                    <p class="text-sm text-gray-400 mt-2">Click items on the left to add them</p>
+                `;
+                addButton.style.display = 'none';
+            } else {
+                boxElement.innerHTML = `
+                    <div class="w-full">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${boxItems.map((item, index) => `
+                                <span class="blessed-item text-sm">
+                                    ${item.name}
+                                    <button onclick="removeFromBox(${index})" class="ml-2 text-red-400 hover:text-red-300">×</button>
+                                </span>
+                            `).join('')}
+                        </div>
+                        <p class="text-center text-yellow-400 font-bold">Your box is getting blessed! ✨</p>
+                    </div>
+                `;
+                addButton.style.display = 'block';
+            }
+
+            totalElement.textContent = `$${boxTotal.toFixed(2)}`;
+        }
+
+        function removeFromBox(index) {
+            boxTotal -= boxItems[index].price;
+            boxItems.splice(index, 1);
+            updateBoxDisplay();
+        }
+
+        function addBoxToCart() {
+            if (boxItems.length === 0) return;
+            
+            boxItems.forEach(item => cart.push(item));
+            cartTotal += boxTotal;
+            
+            showSuccessMessage(`Added your Blessed Box (${boxItems.length} items) to your order!`);
+            
+            // Reset box
+            boxItems = [];
+            boxTotal = 0;
+            updateBoxDisplay();
+            updateCartDisplay();
+        }
+
+        // Bundle functionality
+        function addBundleToCart(bundleName, price) {
+            let bundleItem = {
+                name: '',
+                price: price
+            };
+
+            switch(bundleName) {
+                case 'family-feast':
+                    bundleItem.name = 'Family Feast Bundle (Gallon + 2 Mason Jars + Large Banana Pudding)';
+                    break;
+                case 'lemonade-lover':
+                    bundleItem.name = 'Lemonade Lover Bundle (8 Pint Pouches + 2 Mason Jars)';
+                    break;
+                case 'dessert-paradise':
+                    bundleItem.name = 'Dessert Paradise Bundle (3 Small Dessert Pans + 2 Quarts)';
+                    break;
+            }
+
+            cart.push(bundleItem);
+            updateCartDisplay();
+            showSuccessMessage(`Added ${bundleItem.name} to your order!`);
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            const cartItemsElement = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const orderSummaryElement = document.getElementById('order-summary-display');
+            const finalTotalElement = document.getElementById('final-total');
+
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<p class="text-gray-400">Your items will appear here as you add them to your order.</p>';
+                orderSummaryElement.innerHTML = 'Items will appear here when you add them to your order.';
+            } else {
+                cartItemsElement.innerHTML = cart.map((item, index) => `
+                    <div class="flex justify-between items-center py-2 border-b border-gray-600">
+                        <span class="text-sm">
+                            ${item.name} ${item.flavor ? `(${item.flavor})` : ''} ${item.size ? `- ${item.size}` : ''}
+                        </span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-yellow-400">$${item.price.toFixed(2)}</span>
+                            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-xs">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                orderSummaryElement.innerHTML = cart.map(item => `
+                    <div class="flex justify-between py-1">
+                        <span>${item.name} ${item.flavor ? `(${item.flavor})` : ''} ${item.size ? `- ${item.size}` : ''}</span>
+                        <span>$${item.price.toFixed(2)}</span>
+                    </div>
+                `).join('');
+            }
+
+            cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
+            finalTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
+
+            // Update hidden form fields
+            document.getElementById('order-items-hidden').value = JSON.stringify(cart);
+            document.getElementById('order-total-hidden').value = cartTotal.toFixed(2);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        // Success message
+        function showSuccessMessage(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-4 right-4 bg-yellow-500 text-black px-6 py-3 rounded-lg z-50 font-bold';
+            successDiv.textContent = message;
+            document.body.appendChild(successDiv);
+
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+            updateBoxDisplay();
+        });
+    </script>
+</body>
+</html>
